@@ -1,4 +1,4 @@
-console.log('labas, labas');
+console.log('nelabas');
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
