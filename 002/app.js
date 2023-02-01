@@ -1,6 +1,11 @@
 console.log('Hello!');
+// defer
+// window.addEventListener('load', () => {
+//     const r = document.querySelector('h1');
+//     console.log(r);
+// });
 
-// && ir ||
+// Loginiai operatoriai and && ir Or ||
 const A = 5;
 const B = 7;
 
@@ -30,15 +35,97 @@ T || T => T
 T || F => T
 */
 
-const D = 5;
+// Number to string
+const D = 0;
 const SD = '' + D;
-console.log(typeof D, '=>', typeof SD);
+console.log(typeof D, '->', typeof SD);
 
+// String to number
+const S = '88';
+const DS = +D;
+console.log(typeof S, '->', typeof DS);
+
+// To logic
+const L1 = !!D;
+const L2 = !!S;
+console.log(L1, '->', L2);
 
 // Funkcijos - kodas vykdomas atskirai - grizta nuo is iskvietimo
 // deklaracija ir iskvietimas
 
-function sayHello() {
+function sayHallo() {
     console.log('Labas');
 }
+sayHallo();
+
+// Anonimine funkcija - priskirta kintamajam
+const sayHello = function() {
+    console.log('Labukas');
+    return 'Va kaip viskas buvo...'
+}
 sayHello();
+
+// Funkcija nepaleista ir paleista (iskviesta)
+console.log(sayHello);
+console.log(sayHello());
+
+// parametras kintamasis kuris lygus paleistai funkcijai
+const vaRun = sayHello();
+const vaNotRun = sayHello;
+
+// Paleidziam kada norim skliausteliais
+console.log(vaRun);
+console.log(vaNotRun());
+
+// Funkcija kuri grazina funkcija
+// Galima perduoti nepaleista funkcija
+// Galima perduoti rezultata
+// Rezultatas gali buti funkcija
+const fun = function() {
+    console.log('ONE');
+    return function() {
+        console.log('TWO');
+        return function() {
+            console.log('THREE');
+        }
+    }
+}
+const makeFun = fun();
+makeFun()();
+
+// Anonimine funkcija gali buti paversta i arrow funkcija
+// Skiriasi tik zodeliu .this
+const Hi1 = function() {
+    return 'Va kaip viskas buvo 1...'
+}
+Hi1();
+
+const Hi2 = () => {
+    return 'Va kaip viskas buvo 2...'
+}
+Hi2();
+const Hi3 = () => 'Va kaip viskas buvo 3...';
+const Hi4 = _ => 'Va kaip viskas buvo 4...';
+
+console.log(Hi1());
+console.log(Hi2());
+console.log(Hi3());
+console.log(Hi4());
+
+// perdaryta funkcija
+const tooFun = () => () => () => 'THREE';
+
+tooFun()()();
+console.log(tooFun()()());
+
+// Funkcijos parametras - gali buti daugiau nei argumentu
+// parametras gali tureti default reiksme b = 100. Tuomet ji lieka jei neperduodama kita
+const funFun = (a, b, c) => {
+    console.log(a * b);
+}
+// Funkcijos agumentas - reiksme - gali buti kintamasis, masyvas, stringas, skaicius, funkcija
+// Funkcija perduodama kaip argumentas vadinama call back
+const _15 = 15;
+funFun(8, _15);
+
+// Irasas 1.37 h
