@@ -68,3 +68,51 @@ console.log(arrMap);
 for (const o in fancyMap) {
     console.log(o);
 }
+console.clear();
+console.log('------- UseCase -------');
+
+let shopArr = [
+    {color: 'pink', dot: true, id:1},
+    {color: 'skyblue', dot: true, id:5},
+    {color: 'crimson', dot: false, id:3},
+    {color: 'pink', dot: false, id:8},
+];
+console.log(shopArr);
+console.log('3:', shopArr.filter(c => c.id == 3).shift()); // gauti
+console.log('8:', !!shopArr.filter(c => c.id == 8).length); // ar yra
+console.log('9:', !!shopArr.filter(c => c.id == 9).length);
+shopArr.push({color: 'coral', dot: true, id:1}); // prideti
+console.log(shopArr);
+shopArr = shopArr.filter(c => c.id != 5); // istrinti
+console.log(shopArr);
+
+// refactoring to Map
+const shopMapArr = new Map ([
+    [1, {color: 'pink', dot: true, id:1}],
+    [5, {color: 'skyblue', dot: true, id:5}],
+    [3, {color: 'crimson', dot: false, id:3}],
+    [8, {color: 'pink', dot: false, id:8}],
+]);
+
+console.log(shopMapArr);
+console.log('3:', shopMapArr.get(3)); // gauti
+console.log('8:', shopMapArr.has(8)); // ar yra
+shopMapArr.delete(5); // istrinti
+shopMapArr.set(17, { color: 'coral', dot: true, id: 17}); // prideti
+console.log(shopMapArr);
+
+console.clear();
+console.log('------- JSON -------');
+// java script object notation
+// taisykliu rinkinys objektui ar masyvui paversti i stringa ir atgal
+
+let shopArrJson = JSON.stringify(shopArr);
+console.log(shopArrJson);
+let shopArrJsonBack = JSON.parse(shopArrJson);
+console.log(shopArrJsonBack);
+
+let d = 42;
+const djson = JSON.stringify(d);
+console.log(typeof(djson));
+const djsonBack = JSON.parse(djson);
+console.log(typeof(djsonBack));
