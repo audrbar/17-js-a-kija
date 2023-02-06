@@ -127,5 +127,62 @@ const funFun = (a, b, c) => {
 // Funkcija perduodama kaip argumentas vadinama call back
 const _15 = 15;
 funFun(8, _15);
+console.clear();
 
-// Irasas 1.37 h
+console.log('--------- Foreach CallBack--------');
+
+const animals = [
+    'racoon',
+    'beaver',
+    'moose'
+];
+
+const colors = [
+    'pink',
+    'crimson',
+    'skyblue'
+];
+
+console.log(animals);
+console.log(colors);
+
+const addStars = word => console.log('* ' + word + ' *');
+const addPluses = word => console.log('+ ' + word + ' +');
+
+// ka iteruoti ir ka su juo padaryti - call back
+const iterator = (what, fun) => {
+    for (let i = 0; i < what.length; i++) {
+    fun(what[i]);
+    }
+}
+iterator(animals, word => console.log('* ' + word + ' *'));
+iterator(colors, addPluses);
+
+animals.forEach(word => console.log('* ' + word + ' *'));
+colors.forEach(addPluses);
+
+colors.forEach((word, index) => console.log(word, index))
+colors.forEach((_, index) => console.log(index))
+colors.forEach((word, index, arr) => console.log(word, index, arr))
+
+console.clear();
+
+console.log('--------- Push --------');
+// animals[15] = 'bird';
+animals.push('serge');
+animals.unshift('mouse', 'fox', 'wolf', 'rabbit');
+
+animals.pop();
+animals.shift();
+console.log(animals);
+console.table(animals);
+console.table(animals[1]);
+
+console.clear();
+
+console.log('--------- Spread --------');
+
+animals.unshift(...colors);
+console.log(animals);
+console.table(animals);
+console.log({ ...colors });
