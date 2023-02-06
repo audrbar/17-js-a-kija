@@ -37,3 +37,7 @@ const fancyArr = [...fancySet].sort();
 // turi forEeach
 fancySet.forEach(e => fancySet.add(e));
 console.log(fancySet);
+
+console.clear();
+console.log('------- Mapduomenis -------');
+
