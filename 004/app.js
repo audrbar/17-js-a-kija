@@ -1,3 +1,4 @@
+"use strict"
 console.log('------- Duomenu strukturos -------');
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
 console.log('------- Set -------');
@@ -34,10 +35,36 @@ console.log(arrSet);
 console.log('------- Sort -------');
 console.log(new Set([...fancySet].sort()));
 const fancyArr = [...fancySet].sort();
-// turi forEeach
-fancySet.forEach(e => fancySet.add(e));
+// turi forEeach, neturi map, sort
+fancySet.clear();
+fancyArr.forEach(e => fancySet.add(e));
 console.log(fancySet);
-
 console.clear();
-console.log('------- Mapduomenis -------');
+console.log('------- Map -------');
+// panasus i masyva, turi aukstus, indeksai gali buti bet kas (objektas, funkcijos, primityvai)
+// kas pirmas atejo, pirmas ir yra
 
+const fancyMap = new Map();
+fancyMap.set('a1', 'racoon');
+fancyMap.set('a2', 'fox');
+fancyMap.set('a3', 'wolf');
+console.log(fancyMap);
+console.log(fancyMap.get('a2'));
+console.log(fancyMap.has('a2'));
+console.log(fancyMap.has('fox'));
+// irasymas esanciu raktu pakeicia rakta
+fancyMap.set({ a: 2}, 'rabit');
+fancyMap.set({ a: 2}, 'chicken');
+fancyMap.set(function(){return 'hello'}, 'beaver');
+console.log(fancyMap);
+fancyMap.forEach((a, i) => console.log(a, i));
+// santykis su masyvu komplikuotas - indeksai ir reiksmes
+const arrMap = [...fancyMap];
+// fancyMap.clear();
+arrMap.sort((a, b) => a[1].localeCompare(b[1]));
+arrMap.forEach(e => fancyMap.set(e[0], e[1]));
+console.log(arrMap);
+
+for (const o in fancyMap) {
+    console.log(o);
+}
