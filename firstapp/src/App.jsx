@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import Animal from './components/jb/Animal';
 
 function App() {
@@ -8,8 +8,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Animal animalName="Racoon" color="coral"/>
-      <Animal animalName="Fox"color="red"/>
+      <Animal animalName="Racoon" color="coral" h1Class="blue" />
+      <Animal animalName="Fox"color="red" h1Class="green" />
+      <Animal animalName="Rabbit"color="black" h1Class="yellow" />
       </header>
     </div>
   );

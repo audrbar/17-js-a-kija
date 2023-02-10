@@ -40,3 +40,17 @@ h1 {
     transform: rotate(360deg);
   }
 }
+
+h1 {
+  &.blue {
+    background-color: rgb(18, 23, 167);
+  }
+
+  &.green {
+    background-color: rgb(25, 138, 63);
+  }
+
+  &.yellow {
+    background-color: #c3c925;
+  }
+}
