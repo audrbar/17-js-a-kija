@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+.btn {
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  width: 180px;
+  border: none;
+  border-radius: 35px;
+  padding: 10px;
+  background-color: #333;
+  color: #999;
+  letter-spacing: 0.8px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.5s;
+}
+
+.btn:hover {
+  text-decoration: solid;
+}
