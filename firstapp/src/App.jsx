@@ -1,29 +1,59 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import AnimalLi from './components/008/AnimalLi';
+import { useState } from 'react';
+import './App.scss';
+import AnimalLi from "./components/008/AnimalLi";
 import Click from './components/008/Click';
+
+const data = [
+    { id: 1, animal: 'Racoon', color: 'crimson', bold: true },
+    { id: 4, animal: 'Fox', color: 'brown', bold: true },
+    { id: 17, animal: 'Beaver', color: 'skyblue', bold: false },
+    { id: 3, animal: 'Unicorn', color: 'coral', bold: true }
+];
 
 function App() {
 
-  const data = [
-    {id: 1, animal: 'racoon', color: 'grey', bold: true},
-    {id: 5, animal: 'fox', color: 'yellow', bold: true},
-    {id: 3, animal: 'rabit', color: 'red', bold: true},
-    {id: 6, animal: 'moose', color: 'green', bold: false}
-  ]
+    // const stateValue = useState('start value')[0];
+    // const functionToChangeState = useState('start value')[1];
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <div className="card">
-          <h2>Animals list</h2>
+    const [stateValue, functionToChangeState] = useState('start value');
+
+    // stateValue = 'next value';
+    functionToChangeState('next value'); // => stateValue = 'next value'
+
+    const arr = ['red', 'blue'];
+
+    // const red = arr[0];
+    // const blue = arr[1];
+
+    const [red, blue] = arr;
+
+
+    return (
+        <div className="App">
+            <header className="App-header">
+
+            <Click/>
+
+                <div className="card">
+                    <div className="card-header">
+                        <h2>Animals List</h2>
+                    </div>
+
+                    
+
+                    <ul className="list-group list-group-flush">
+                        {
+                            data.map((a, i) => <AnimalLi key={a.id} animal={a} index={i} />)
+                        }
+                    </ul>
+                </div>
+
+
+            </header>
         </div>
-      {data.map(a => <AnimalLi key={a.id} animal={a} />)}
-      </header>
-      <button>Submit</button>
-      <Click />
-    </div>
-  );
+    );
+
 }
 
 export default App;

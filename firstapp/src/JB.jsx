@@ -1,5 +1,5 @@
 import './App.scss';
-import Animal from '../jb/Animal';
+import Animal from './components/jb/Animal';
 
 const obj = ['racoon', 'fox'];
 
