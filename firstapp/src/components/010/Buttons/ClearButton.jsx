@@ -1,4 +1,4 @@
-function ClearButton({classes, sq, setSq}) {
+function ClearButton({classes, setSq}) {
 
     const clickHandler = () => {
         setSq([]);
