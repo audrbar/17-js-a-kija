@@ -9,6 +9,8 @@ import StopSpinButton from './components/010/Buttons/StopSpinButton';
 import SpinAllButton from './components/010/Buttons/SpinAllButton';
 import SortButton from './components/010/Buttons/SortButton';
 import DefaultSortButton from './components/010/Buttons/DefaultSortButton';
+import FilterButton from './components/010/Buttons/FilterButton';
+import ShowAllButton from './components/010/Buttons/ShowAllButon';
 
 
 function App() {
@@ -20,7 +22,7 @@ function App() {
             <header className="App-header">
                 <div className="sq-bin">
                     {
-                        sq.map((s, i) => <Sq key={i} s={s} i={i} setSq={setSq} />)
+                        sq.map((s, i) => s.show ? <Sq key={i} s={s} i={i} setSq={setSq} /> : null)
                     }
                 </div>
                 <div className="sq-bin">
@@ -31,6 +33,8 @@ function App() {
                     <SpinAllButton classes="" setSq={setSq} />
                     <SortButton classes="" setSq={setSq} />
                     <DefaultSortButton classes="" setSq={setSq} />
+                    <FilterButton classes="red" setSq={setSq} />
+                    <ShowAllButton classes="red" setSq={setSq} />
                 </div>
 
 

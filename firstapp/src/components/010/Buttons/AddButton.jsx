@@ -11,7 +11,8 @@ function AddButton({classes, setSq}) {
             color: randColor(),
             spin: false,
             number: ('' + rand(0, 999)).padStart(3, '0'),
-            row: s.length
+            row: s.length,
+            show: true
         }]);
     }
 
