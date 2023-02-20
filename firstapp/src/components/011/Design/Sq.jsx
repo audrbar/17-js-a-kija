@@ -1,16 +1,23 @@
+import { withClone, withDelete, withSpin } from "../HOCs/sq";
+import BaseSmallButton from "./BaseSmallButton";
+import BlueSmallButton from "./BlueSmallButton";
+import RedSmallButton from "./RedSmallButton";
+
 function Sq({s, setSq}) {
 
-    return (
+    const BaseSmallButtonWithClone = withClone(BaseSmallButton);
+    const BlueSmallButtonWithSpin = withSpin(BlueSmallButton);
+    const RedSmallButtonWithDelete = withDelete(RedSmallButton);
 
+    return (
         <div className={'sq' + (s.spin ? ' spin' : '')} style={{
-            backgroundColor: s.color + '70',
+            backgroundColor:s.color + '70',
             borderColor: s.color,
-            // transform: i % 2 ? 'rotate(2deg)' : 'rotate(-2deg)'
             }}>
                 <div className={s.spin ? 'spin-back' : ''}>
-                <DelButton classes="red small" sq={s} setSq={setSq} />
-                <CloneButton classes="small" sq={s} setSq={setSq} />
-                <SpinButton classes="small" sq={s} setSq={setSq} />
+                    <BaseSmallButtonWithClone title="clone" setSq={setSq} sq={s} />
+                    <BlueSmallButtonWithSpin title="spin" setSq={setSq} sq={s} />
+                    <RedSmallButtonWithDelete title="del" setSq={setSq} sq={s} />
                 {s.number}
                 </div>
         </div>
