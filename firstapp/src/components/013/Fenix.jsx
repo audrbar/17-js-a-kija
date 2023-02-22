@@ -1,21 +1,23 @@
 import { useEffect } from "react";
 
-const Fenix = () => {
+function Fenix() {
 
-    console.log('Fenix function');
-
-    useEffect(() => {
-        console.log('Fenix is alive');
-        return () => {
-            console.log('Fenix is dead');
+    useEffect(
+        () => {
+            console.log('Fenix is alive');
+            return () => {
+                console.log('Fenix is dead');
+            }
         }
-    }, []);
+        ,[]
+    );
 
-  return (
-    <>
-        <h2>Fenix</h2>
-    </>
-  )
+    return (
+        <>
+        <h2>FENIX</h2>
+         </>
+        
+    );
 }
 
 export default Fenix;
