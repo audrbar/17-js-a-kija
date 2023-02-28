@@ -1,0 +1,206 @@
+@charset "UTF-8";
+.dices {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.dices .content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.dices .content .left {
+  width: 40%;
+  padding-top: 50px;
+}
+.dices .content .right {
+  width: 50%;
+  padding-top: 50px;
+}
+.dices .content .right .list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.dices .content .right .list .item {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid skyblue;
+  margin: 5px;
+  align-self: stretch;
+}
+.dices .dice-edit-create {
+  display: flex;
+  border: 2px solid crimson;
+  padding: 10px;
+}
+.dices .dice-edit-create .dice-bin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 70%;
+}
+.dices .dice-edit-create .dice-bin .dice-frame {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dices .dice-edit-create .dice-bin .bottom {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.dices .dice-edit-create .dice-bin .bottom label {
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  width: 60px;
+  text-align: center;
+  background-color: crimson;
+  border-radius: 5px;
+}
+.dices .dice {
+  color: white;
+  font-size: 100px;
+}
+.dices .dice::after {
+  display: block;
+}
+.dices .dice._1::after {
+  content: "⚀";
+}
+.dices .dice._2::after {
+  content: "⚁";
+}
+.dices .dice._3::after {
+  content: "⚂";
+}
+.dices .dice._4::after {
+  content: "⚃";
+}
+.dices .dice._5::after {
+  content: "⚄";
+}
+.dices .dice._6::after {
+  content: "⚅";
+}
+.dices .cb-bin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 30%;
+}
+.dices .cb-bin label.cb {
+  font-size: 1.1em;
+  line-height: 2;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: darkgrey;
+  padding: 4px 7px;
+}
+.dices .cb-bin input {
+  display: none;
+}
+.dices .cb-bin input:checked + label.cb {
+  color: white;
+  background-color: crimson;
+  border-radius: 5px;
+  padding: 7px;
+}
+.dices .input-bin {
+  width: 100%;
+}
+.dices .input-bin.range {
+  display: flex;
+  align-items: center;
+}
+.dices .input-bin.range input {
+  width: 100%;
+  border: none;
+}
+.dices .input-bin.color {
+  width: auto;
+}
+.dices .input-bin.color input {
+  width: 60px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+}
+
+.loader {
+  text-align: center;
+  color: white;
+  font-size: 100px;
+}
+
+button {
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  padding: 7px 30px;
+  margin: 20px 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 1.1em;
+  border: none;
+  outline: none;
+  text-align: center;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  background-color: gray;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #4d4d4d;
+}
+button.blue {
+  background-color: skyblue;
+  color: white;
+}
+button.blue:hover {
+  background-color: #30aadc;
+}
+button.red {
+  background-color: crimson;
+  color: white;
+}
+button.red:hover {
+  background-color: #7f0c23;
+}
+button.coral {
+  background-color: coral;
+  color: white;
+}
+button.coral:hover {
+  background-color: #e93f00;
+}
+button.small {
+  padding: 2px 3px;
+  margin: 2px 3px;
+  font-size: 20px;
+  border-radius: 5px;
+}

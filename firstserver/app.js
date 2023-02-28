@@ -3,13 +3,15 @@ const app = express();
 const port = 3003;
 
 const meniu = `
-<a href="/">home</a>
+<a href="/home">home</a>
 <a href="/racoon">racoon</a>
 <a href="/fox">fox</a>
 <a href="/volf">volf</a>
 `;
 
-app.get("/", (req, res) => {
+// Server Side rendering
+
+app.get("/home", (req, res) => {
   res.send(`
   ${meniu}
   <h1>Hello World!</h1>`);
@@ -31,6 +33,24 @@ app.get("/Volf", (req, res) => {
   res.send(`
     ${meniu}
     <h1>Hello Volf!</h1>`);
+});
+
+// API
+
+app.get("/api/home", (req, res) => {
+  res.json({ title: "Hello Forest" });
+});
+
+app.get("/api/racoon", (req, res) => {
+  res.json({ title: "Hello Racoon" });
+});
+
+app.get("/api/fox", (req, res) => {
+  res.json({ title: "Hello Fox" });
+});
+
+app.get("/api/volf", (req, res) => {
+  res.json({ title: "Hello Volf" });
 });
 
 app.listen(port, () => {
