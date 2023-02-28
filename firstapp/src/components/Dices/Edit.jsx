@@ -10,30 +10,26 @@ const dicesCb = [
     { v: 6, t: 'Six' }
 ];
 
-function Create({ setCreateData }) {
+function Edit({ setEditData, setEditModal, editModal}) {
 
-    const [number, setNumber] = useState(1);
-    const [size, setSize] = useState(100);
-    const [color, setColor] = useState('#ffffff');
+    const [number, setNumber] = useState(editModal.number);
+    const [size, setSize] = useState(editModal.size);
+    const [color, setColor] = useState(editModal.color);
 
-    const create = _ => {
-        setCreateData(
+    const edit = _ => {
+        setEditData(
             {
                 number: parseInt(number),
                 size: parseInt(size),
-                color
+                color,
+                id: editModal.id
             });
-        setNumber(1);
-        setSize(100);
-        setColor('#ffffff');
+        setEditModal(null);
     }
 
     return (
         <>
-            <div className="title">
-                Create
-            </div>
-            <div className="dice-edit-create create">
+            <div className="dice-edit-create edit">
 
                 <div className="top">
                     <div className="rotate">
@@ -52,8 +48,8 @@ function Create({ setCreateData }) {
                     <div className="cb-bin">
                         {
                             dicesCb.map(c => <span key={c.v}>
-                                <input type="checkbox" id={'r_' + c.v} checked={number === c.v} onChange={() => setNumber(c.v)} />
-                                <label className="cb" htmlFor={'r_' + c.v}>{c.t}</label>
+                                <input type="checkbox" id={'e_' + c.v} checked={number === c.v} onChange={() => setNumber(c.v)} />
+                                <label className="cb" htmlFor={'e_' + c.v}>{c.t}</label>
                             </span>)
                         }
                     </div>
@@ -63,11 +59,12 @@ function Create({ setCreateData }) {
                     <div className="input-bin color">
                         <input type="color" value={color} onChange={e => setColor(e.target.value)} style={{ color: mutateColor(color) }} />
                     </div>
-                    <button className="blue" onClick={create}>add</button>
+                    <button className="blue" onClick={edit}>save</button>
+                    <button className="red" onClick={() => setEditModal(null)}>cancel</button>
                 </div>
             </div>
         </>
     )
 }
 
-export default Create;
+export default Edit;
