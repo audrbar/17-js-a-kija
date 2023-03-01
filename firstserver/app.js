@@ -1,58 +1,42 @@
 const express = require("express");
+const cors = require('cors');
+const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
+
 const app = express();
 const port = 3003;
+app.use(cors());
 
-const meniu = `
-<a href="/home">home</a>
-<a href="/racoon">racoon</a>
-<a href="/fox">fox</a>
-<a href="/volf">volf</a>
-`;
+app.use(
+  express.urlencoded({
+      extended: true,
+  })
+);
+app.use(express.json());
 
-// Server Side rendering
-
-app.get("/home", (req, res) => {
-  res.send(`
-  ${meniu}
-  <h1>Hello World!</h1>`);
-});
-
-app.get("/racoon", (req, res) => {
-  res.send(`
-    ${meniu}
-    <h1>Hello Racoon!</h1>`);
-});
-
-app.get("/Fox", (req, res) => {
-  res.send(`
-    ${meniu}
-    <h1>Hello Fox!</h1>`);
-});
-
-app.get("/Volf", (req, res) => {
-  res.send(`
-    ${meniu}
-    <h1>Hello Volf!</h1>`);
-});
 
 // API
 
-app.get("/api/home", (req, res) => {
-  res.json({ title: "Hello Forest" });
+app.get('/dices', (req, res) => {
+  let allData = fs.readFileSync('./data.json', 'utf8');
+  allData = JSON.parse(allData);
+  res.json(allData);
 });
 
-app.get("/api/racoon", (req, res) => {
-  res.json({ title: "Hello Racoon" });
+app.post("/dices", (req, res) => {
+  let allData = fs.readFileSync('./data.json', 'utf8');
+  allData = JSON.parse(allData);
+  const data = {...req.body};
+  data.id = uuidv4();
+  allData.push(data);
+  allData = JSON.stringify(allData);
+  fs.writeFileSync('./data.json', allData, 'utf8')
+  
+  res.json({ message: 'OK' });
 });
 
-app.get("/api/fox", (req, res) => {
-  res.json({ title: "Hello Fox" });
-});
 
-app.get("/api/volf", (req, res) => {
-  res.json({ title: "Hello Volf" });
-});
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Dices is on port number: ${port}`);
 });

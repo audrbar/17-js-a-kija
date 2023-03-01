@@ -1,47 +1,72 @@
-import React, { useState, useEffect } from "react";
-import './App.scss'
-import Menu from "./components/016/Menu";
-import Fox from "./components/016/Fox";
-import Home from "./components/016/Home";
-import Racoon from "./components/016/Racoon";
-import Volf from "./components/016/Volf";
-import axios from 'axios'
+import { useEffect, useState } from 'react';
+import Create from './components/DicesServer/Create';
+import List from './components/DicesServer/List';
+import { create, destroy, edit, read } from './components/DicesServer/localStorage';
+import Messages from './components/DicesServer/Messages';
+import './components/DicesServer/style.scss';
+import {v4 as uuidv4} from 'uuid';
+import axios from 'axios';
+
+const URL = 'http://localhost:3003/dices';
+
+const KEY = 'FancyDices';
 
 function App() {
 
-    const [page, setPage] = useState('home')
-    const [content, setContent] = useState(null)
+    const [lastUpdate, setLastUpdate] = useState(Date.now());
+    const [list, setList] = useState(null);
+    const [createData, setCreateData] = useState(null);
+    const [deleteModal, setDeleteModal] = useState(null);
+    const [deleteData, setDeleteData] = useState(null);
+    const [editModal, setEditModal] = useState(null);
+    const [editData, setEditData] = useState(null);
+    const [messages, setMessages] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:3003/api/' + page)
+        axios.get(URL)
         .then(res => {
-            setContent(res.data)
+            setList(res.data);
         })
-    }, [page]);
+    }, [])
 
+
+    useEffect(() => {
+        if (null === createData) {
+            return;
+        }
+        axios.post(URL, createData)
+        .then(res => {
+            console.log(res.data);
+        })
+    }, [createData]);
+
+    
     return (
-        <div className="App">
-            <div className="App-header">
-                <Menu setPage={setPage} />
-                {
-                    page === 'home' && null !== content ? <Home title={content.title} /> : null
-                }
-                                {
-                    page === 'racoon' ? <Racoon title={content.title} /> : null
-                }
-                                {
-                    page === 'fox' ? <Fox title={content.title} /> : null
-                }
-                                {
-                    page === 'volf' ? <Volf title={content.title} /> : null
-                }
-                {
-                    null == content ? <h1>Loading...</h1> : null
-                }
+        <>
+        <div className="dices">
+            <div className="content">
+                <div className="left">
+                    <Create setCreateData={setCreateData}/>
+                </div>
+                <div className="right">
+                    <List 
+                    list={list}
+                    setDeleteModal={setDeleteModal}
+                    deleteModal={deleteModal}
+                    setDeleteData={setDeleteData}
+                    editModal={editModal}
+                    setEditModal={setEditModal}
+                    setEditData={setEditData}
+                     />
+                </div>
             </div>
-
         </div>
-    )
+        {
+            messages && <Messages messages={messages} />
+        }
+        </>
+    );
+
 }
 
-export default App
+export default App;
