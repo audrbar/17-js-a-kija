@@ -26,8 +26,6 @@ function App() {
             });
     }, [lastUpdate]);
 
-
-
     useEffect(() => {
         if (null === createData) {
             return;
@@ -50,12 +48,12 @@ function App() {
         if (null === deleteData) {
             return;
         }
+
         axios.delete(URL + '/' + deleteData.id)
             .then(res => {
                 console.log(res.data);
                 setLastUpdate(Date.now());
             });
-
     }, [deleteData]);
 
 
