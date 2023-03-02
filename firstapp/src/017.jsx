@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Create from './components/DicesServer/Create';
 import List from './components/DicesServer/List';
+import Messages from './components/DicesServer/Messages';
 import './components/DicesServer/style.scss';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -38,7 +39,7 @@ function App() {
         axios.post(URL, { ...createData, promiseId })
             .then(res => {
                 setList(d => d.map(d => res.data.promiseId === d.promiseId ? { ...d, id: res.data.id, promiseId: null } : { ...d }));
-                console.log(res.data);
+                msg(res.data.message.text, res.data.message.type);
             });
 
     }, [createData]);
@@ -51,12 +52,30 @@ function App() {
 
         axios.delete(URL + '/' + deleteData.id)
             .then(res => {
-                console.log(res.data);
                 setLastUpdate(Date.now());
+                msg(res.data.message.text, res.data.message.type);
             });
     }, [deleteData]);
 
+    useEffect(() => {
+        if (null === editData) {
+            return;
+        }
 
+        axios.put(URL + '/' + editData.id, editData)
+            .then(res => {
+                setLastUpdate(Date.now());
+                msg(res.data.message.text, res.data.message.type);
+            });
+    }, [editData]);
+
+    const msg = (text, type) => {
+        const uuid = uuidv4();
+        setMessages(m => [...m ?? [], {text, type, id: uuid}]);
+        setTimeout(() => {
+            setMessages(m => m.filter(m => uuid !== m.id));
+        }, 5000);
+    } 
 
     return (
         <>
@@ -79,7 +98,7 @@ function App() {
                 </div>
             </div>
             {
-                // messages && <Messages messages={messages} />
+                messages && <Messages messages={messages} />
             }
         </>
     );
