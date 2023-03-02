@@ -1,87 +1,32 @@
-import { useEffect, useState } from 'react';
-import Create from './components/DicesServer/Create';
-import List from './components/DicesServer/List';
-import './components/DicesServer/style.scss';
-import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
+import './App.scss';
+import BoxLarge from './Components/018/BoxLarge';
+import Buttons from './Components/018/Buttons';
+import { GlobalSqContextProvider } from './Components/018/GlobalSqContext';
+import GlobalUserContext from './Components/018/GlobalUserContext';
+import rand from './Functions/rand';
 
-const URL = 'http://localhost:3003/dices';
+const users = ['Bebras', 'Zebras', 'Ūdra'];
 
 function App() {
 
-    const [lastUpdate, setLastUpdate] = useState(Date.now());
-    const [list, setList] = useState(null);
-    const [createData, setCreateData] = useState(null);
-    const [deleteModal, setDeleteModal] = useState(null);
-    const [deleteData, setDeleteData] = useState(null);
-    const [editModal, setEditModal] = useState(null);
-    const [editData, setEditData] = useState(null);
-    const [messages, setMessages] = useState(null);
-
-
-    useEffect(() => {
-        axios.get(URL)
-            .then(res => {
-                setList(res.data);
-            });
-    }, [lastUpdate]);
-
-    useEffect(() => {
-        if (null === createData) {
-            return;
-        }
-        // pazadas
-        const promiseId = uuidv4();
-        setList(d => [...d, { ...createData, promiseId }]);
-
-        // serveris
-        axios.post(URL, { ...createData, promiseId })
-            .then(res => {
-                setList(d => d.map(d => res.data.promiseId === d.promiseId ? { ...d, id: res.data.id, promiseId: null } : { ...d }));
-                console.log(res.data);
-            });
-
-    }, [createData]);
-
-
-    useEffect(() => {
-        if (null === deleteData) {
-            return;
-        }
-
-        axios.delete(URL + '/' + deleteData.id)
-            .then(res => {
-                console.log(res.data);
-                setLastUpdate(Date.now());
-            });
-    }, [deleteData]);
-
-
+    const [user, setUser] = useState(users[rand(0, 2)]);
 
     return (
-        <>
-            <div className="dices">
-                <div className="content">
-                    <div className="left">
-                        <Create setCreateData={setCreateData} />
-                    </div>
-                    <div className="right">
-                        <List
-                            list={list}
-                            setDeleteModal={setDeleteModal}
-                            deleteModal={deleteModal}
-                            setDeleteData={setDeleteData}
-                            editModal={editModal}
-                            setEditModal={setEditModal}
-                            setEditData={setEditData}
-                        />
-                    </div>
-                </div>
+        <GlobalUserContext.Provider value={{user}}>
+            <GlobalSqContextProvider>
+            <div className="App">
+                <header className="App-header">
+
+                    <BoxLarge />
+
+                    <Buttons />
+                    <button className="red" onClick={() => setUser(users[rand(0, 2)])}>user</button>
+
+                </header>
             </div>
-            {
-                // messages && <Messages messages={messages} />
-            }
-        </>
+            </GlobalSqContextProvider>
+        </GlobalUserContext.Provider>
     );
 
 }
