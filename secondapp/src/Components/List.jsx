@@ -3,7 +3,7 @@ import { Global } from './Global';
 
 const List = () => {
 
-    const { list } = useContext(Global);
+    const { list, setDeleteModal, setAddModal, setRemModal } = useContext(Global);
 
     return (
         <div className="card mt-4">
@@ -13,7 +13,24 @@ const List = () => {
             <div className="card-body">
                 <ul className="list-group">
                     {
-                        list?.map(n => (<li className="list-group-item">{n.number}</li>))
+                        list?.map(n => (<li key={n.id} className="list-group-item">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-6">
+                                        <h2>{n.number}</h2>
+                                    </div>
+                                    <div className="col-2">
+                                        <button type="button" className="btn btn-primary" onClick={() => setAddModal(n)}>ADD</button>
+                                    </div>
+                                    <div className="col-2">
+                                        <button type="button" className="btn btn-primary" onClick={() => setRemModal(n)}>REM</button>
+                                    </div>
+                                    <div className="col-2">
+                                        <button type="button" className="btn btn-danger" onClick={() => setDeleteModal(n)}>DELETE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>))
                     }
                 </ul>
                 {/* <button className="btn btn-primary" onClick={add} >Add</button> */}
