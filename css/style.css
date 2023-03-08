@@ -9,18 +9,17 @@
 }
 .dices .content {
   width: 100%;
-  max-width: 1200px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 }
 .dices .content .left {
-  width: 40%;
   padding-top: 50px;
+  margin: 0 15px;
 }
 .dices .content .right {
-  width: 50%;
   padding-top: 50px;
+  margin: 0 15px;
 }
 .dices .content .right .list {
   display: flex;
@@ -28,56 +27,94 @@
   justify-content: space-evenly;
   flex-direction: row;
   flex-wrap: wrap;
+  border: 1px solid rgba(135, 206, 235, 0.3137254902);
 }
 .dices .content .right .list .item {
-  width: 30%;
+  width: 322px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  border: 1px solid skyblue;
-  margin: 5px;
-  align-self: stretch;
+  height: 288px;
+  margin: 20px 0;
+  position: relative;
+}
+.dices .title {
+  border: 1px solid rgba(135, 206, 235, 0.3137254902);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #87ceeb;
+  font-size: 30px;
+  text-align: center;
+  color: white;
 }
 .dices .dice-edit-create {
   display: flex;
-  border: 2px solid crimson;
-  padding: 10px;
+  border: 1px solid rgba(135, 206, 235, 0.3137254902);
+  padding: 15px;
+  border-radius: 10px;
+  flex-direction: column;
+  width: 300px;
 }
-.dices .dice-edit-create .dice-bin {
+.dices .dice-edit-create.create {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.dices .dice-edit-create.edit {
+  position: absolute;
+  left: -24px;
+  top: -15px;
+  background-color: #282c34;
+}
+.dices .dice-edit-create .top {
+  display: flex;
+}
+.dices .dice-edit-create .top .dice-bin {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 70%;
 }
-.dices .dice-edit-create .dice-bin .dice-frame {
+.dices .dice-edit-create .top .dice-bin .dice-frame {
   height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.dices .dice-edit-create .dice-bin .bottom {
+.dices .dice-edit-create .bottom {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
 }
-.dices .dice-edit-create .dice-bin .bottom label {
+.dices .dice-edit-create .bottom label {
   text-align: center;
   color: white;
-  font-size: 30px;
+  font-size: 26px;
   width: 60px;
   text-align: center;
-  background-color: crimson;
+  background-color: skyblue;
   border-radius: 5px;
+  height: 35px;
 }
 .dices .dice {
   color: white;
   font-size: 100px;
+  line-height: 1;
+  width: 160px;
+  height: 200px;
+  border: 1px solid #36383c;
+  border-radius: 15px;
+  box-shadow: 5px 5px rgba(54, 56, 60, 0.3333333333);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 .dices .dice::after {
   display: block;
+  position: relative;
+  top: -12px;
 }
 .dices .dice._1::after {
   content: "⚀";
@@ -100,10 +137,9 @@
 .dices .cb-bin {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   flex-direction: column;
   justify-content: flex-start;
-  width: 30%;
 }
 .dices .cb-bin label.cb {
   font-size: 1.1em;
@@ -121,29 +157,75 @@
 }
 .dices .cb-bin input:checked + label.cb {
   color: white;
-  background-color: crimson;
+  background-color: skyblue;
   border-radius: 5px;
   padding: 7px;
+}
+.dices .rotate {
+  transform: rotate(-90deg);
+  position: relative;
+  height: 30px;
+  width: 30px;
 }
 .dices .input-bin {
   width: 100%;
 }
 .dices .input-bin.range {
-  display: flex;
-  align-items: center;
+  position: relative;
+  left: -175px;
 }
 .dices .input-bin.range input {
-  width: 100%;
-  border: none;
+  width: 200px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: skyblue;
+  cursor: pointer;
+}
+.dices .input-bin.range input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 5px solid white;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: skyblue;
+  cursor: pointer;
 }
 .dices .input-bin.color {
   width: auto;
 }
 .dices .input-bin.color input {
-  width: 60px;
-  height: 40px;
+  background-color: transparent;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 80px;
+  height: 35px;
   border: none;
+  cursor: pointer;
+  position: relative;
+}
+.dices .input-bin.color input::-webkit-color-swatch {
+  width: 80px;
+  height: 35px;
   border-radius: 5px;
+  border: none;
+}
+.dices .input-bin.color input::after {
+  content: "color";
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  top: 5px;
+  left: 0;
+  width: 80px;
+  height: 35px;
+  letter-spacing: 3px;
+  font-size: 22px;
 }
 
 .loader {
@@ -152,15 +234,86 @@
   font-size: 100px;
 }
 
+.delete-button::after {
+  content: "✘";
+  color: crimson;
+  font-size: 26px;
+  line-height: 1;
+  display: block;
+  cursor: pointer;
+  padding: 0 0 0 20px;
+}
+
+.edit-button::after {
+  content: "⁝";
+  color: skyblue;
+  font-size: 26px;
+  line-height: 1;
+  display: block;
+  cursor: pointer;
+  padding: 0 0 0 20px;
+}
+
+.delete-modal {
+  position: absolute;
+  left: -65px;
+  top: -10px;
+  width: 300px;
+  height: 50px;
+  background-color: crimson;
+  z-index: 200;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 7px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.delete-modal span {
+  display: block;
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: 20px;
+  padding: 0 10px;
+  border: 1px solid white;
+}
+
+.messages {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.messages .message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+  border-radius: 5px;
+  margin: 10px;
+  color: white;
+  background-color: gray;
+  padding: 10px 30px;
+}
+.messages .message.ok {
+  background-color: darkseagreen;
+}
+.messages .message.error {
+  background-color: deeppink;
+}
+
 button {
   display: inline-block;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  padding: 7px 30px;
-  margin: 20px 10px;
-  border-radius: 10px;
+  padding: 7px;
+  margin: 5px 0;
+  border-radius: 5px;
   box-sizing: border-box;
   text-decoration: none;
   font-weight: 300;
