@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Global } from './Global';
 
 const Create = () => {
 
-    const [number, setNumber] = useState(1);
+    const [number, setNumber] = useState(0);
+    const { setCreate } = useContext(Global);
+
+    const add = _ => {
+        setCreate({
+            number: parseInt(number)
+        })
+        setNumber(0);
+    }
 
     return (
         <div className="card mt-4">
@@ -16,7 +25,7 @@ const Create = () => {
                     <input type="range" min="0" max="99" className="form-range"
                         value={number} onChange={event => setNumber(event.target.value)} />
                 </div>
-                <button className="btn btn-primary">Add</button>
+                <button className="btn btn-primary" onClick={add} >Add</button>
             </div>
         </div>
     )
