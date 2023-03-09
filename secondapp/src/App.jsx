@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style/app.scss';
 import Create from './Components/Create';
 import { GlobalProvider } from './Components/Global';
 import List from './Components/List';
@@ -15,6 +14,7 @@ function App() {
         <div className="row">
           <div className="col-5">
             <Create />
+            <Messages />
           </div>
           <div className="col-7">
             <List />
@@ -24,7 +24,7 @@ function App() {
       <ModalDelete />
       <ModalAdd />
       <ModalRem />
-      <Messages />
+
     </GlobalProvider>
   );
 }
